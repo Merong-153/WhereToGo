@@ -249,7 +249,7 @@ function Navbar() {
                 ? "로그인 후 사용 가능합니다"
                 : newMessage
                   ? "새로운 메시지가 있습니다"
-                  : "1:1 문의하기"
+                  : "1:1 문의"
             }
             placement="top"
             hasArrow
