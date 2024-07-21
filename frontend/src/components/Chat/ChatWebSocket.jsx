@@ -33,7 +33,7 @@ export function ChatWebSocket({ roomInfo, maxHeight, width }) {
 
   const connect = (roomInfo) => {
     //웹소켓 연결
-    const socket = new WebSocket("ws://localhost:8080/ws");
+    const socket = new WebSocket("ws://43.200.172.147:8080/ws");
     stompClient.current = Stomp.over(socket);
     stompClient.current.connect({}, () => {
       //메시지 수신(1은 roomId를 임시로 표현)

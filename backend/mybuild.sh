@@ -22,12 +22,12 @@ docker push merong153/wheretogo
 # remote 에서
 
 # 컨테이너 멈추고
-ssh -i src/main/resources/secret/key0527.pem ubuntu@43.201.23.203 'docker stop wheretogo'
+ssh -i src/main/resources/secret/key0527.pem ubuntu@43.200.172.147 'docker stop wheretogo'
 # 컨테이너 삭제
-ssh -i src/main/resources/secret/key0527.pem ubuntu@43.201.23.203 'docker rm wheretogo'
+ssh -i src/main/resources/secret/key0527.pem ubuntu@43.200.172.147 'docker rm wheretogo'
 # pull image
-ssh -i src/main/resources/secret/key0527.pem ubuntu@43.201.23.203 'docker pull merong153/wheretogo'
+ssh -i src/main/resources/secret/key0527.pem ubuntu@43.200.172.147 'docker pull merong153/wheretogo'
 # 컨테이너 실행
-ssh -i src/main/resources/secret/key0527.pem ubuntu@43.201.23.203 'docker run -d -p 8080:8080 --restart always --name wheretogo merong153/wheretogo'
+ssh -i src/main/resources/secret/key0527.pem ubuntu@43.200.172.147 'docker run -d -p 8080:8080 --restart always --name wheretogo merong153/wheretogo'
 # 불필요한 이미지 삭제
-ssh -i src/main/resources/secret/key0527.pem ubuntu@43.201.23.203 'docker image prune -f'
+ssh -i src/main/resources/secret/key0527.pem ubuntu@43.200.172.147 'docker image prune -f'
