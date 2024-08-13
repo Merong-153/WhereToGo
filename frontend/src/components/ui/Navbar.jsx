@@ -284,10 +284,10 @@ function Navbar() {
           >
             <Flex
               bgColor={hColor}
-              w={"2rem"}
-              h={"2rem"}
+              w={"42px"}
+              h={"42px"}
               position="absolute"
-              right={"1rem"}
+              right="-1px"
               zIndex={4}
               alignItems={"center"}
               justify={"center"}

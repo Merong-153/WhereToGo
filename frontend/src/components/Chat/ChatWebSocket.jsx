@@ -33,7 +33,7 @@ export function ChatWebSocket({ roomInfo, maxHeight, width }) {
 
   const connect = (roomInfo) => {
     //웹소켓 연결
-    const socket = new WebSocket("ws://43.200.172.147:8080/ws");
+    const socket = new WebSocket("ws://localhost:8080/ws");
     stompClient.current = Stomp.over(socket);
     stompClient.current.connect({}, () => {
       //메시지 수신(1은 roomId를 임시로 표현)
@@ -43,11 +43,13 @@ export function ChatWebSocket({ roomInfo, maxHeight, width }) {
           //누군가 발송했던 메시지를 리스트에 추가
           const nowMessage = JSON.parse(message.body);
           setNewMessage(message.body);
-          setMyMessage(message.body);
           setMessages((prevMessages) => [...prevMessages, nowMessage]);
           if (nickName === nowMessage.name) {
             setIsNewMessage(false);
+            setMyMessage(message.body);
+            console.log("같아")
           } else {
+            console.log("달라")
             setSenderName(nowMessage.name);
             setIsNewMessage(true);
           }
@@ -196,6 +198,7 @@ export function ChatWebSocket({ roomInfo, maxHeight, width }) {
     if (isNewMessage) {
       //스크롤을 제일 밑으로 내린 길이의 - 800인 위치에서 메세지를 보고있을때 메세지가 새로오면 새로운 메세지 버튼 띄우기
       if (scrollPosition >= scrollHeight) {
+        console.log("스크롤~~~~");
         scrollToBottom("s");
       } else {
         // 그렇지 않으면 새 메시지 알림 버튼 표시
@@ -203,16 +206,17 @@ export function ChatWebSocket({ roomInfo, maxHeight, width }) {
       }
       setIsNewMessage(false);
     }
-  }, [notifications]);
+  }, [notifications, isNewMessage]);
 
   useEffect(() => {
     scrollToBottom("s");
+    console.log("ㅅ큿크")
   }, [myMessage]);
 
   //----------------------------------------
 
   return (
-    <Box h="100%" w={width}>
+    <Box h="100%" w={width} pt={10}>
       <Box
         ref={chatBoxRef}
         maxH={maxHeight}
@@ -223,6 +227,7 @@ export function ChatWebSocket({ roomInfo, maxHeight, width }) {
         right="0px"
         width="100%"
         pb={2}
+
         onScroll={handleScroll}
       >
         {/* 메시지 리스트 */}
@@ -252,7 +257,6 @@ export function ChatWebSocket({ roomInfo, maxHeight, width }) {
       {/* 입력 필드와 버튼 */}
       <Flex
         position="relative"
-        bottom="px"
         left="0"
         right="0"
         p={4}

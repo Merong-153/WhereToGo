@@ -51,6 +51,7 @@ public class ChatController {
     //메시지 송신 및 수신, /pub가 생략된 모습. 클라이언트 단에선 /pub/message로 요청
     @MessageMapping("/message")
     public ResponseEntity<Void> receiveMessage(@RequestBody ChatMessage chat) {
+        System.out.println("멤버아이디요"+chat.getMemberId());
         String auth = memberMapper.getAuthTypeByMemberId(chat.getMemberId());
         boolean readState = false;
         Integer id = 0;
@@ -69,6 +70,7 @@ public class ChatController {
             readState = chatMapper.getUserStatus(chat.getChatRoomId());
             chat.setUserRead(readState);
             notificationController.sendMessageToUser(id, chat.getMemberId(), "어드민의 메세지 와떠염");
+            System.out.println("어드님이 보냈음");
         } else {
             String adminExist = chatMapper.getAssignedAdminId(chat.getChatRoomId());
             if (adminExist.equals("none")) {
@@ -76,6 +78,7 @@ public class ChatController {
             } else {
                 id = Integer.valueOf(chatMapper.getAssignedAdminId(chat.getChatRoomId()));
                 notificationController.sendMessageToUser(id, chat.getMemberId(), "유저의 메세지 와떠염");
+                System.out.println("유저가 보냈음");
             }
 
             readState = chatMapper.getAdminStatus(chat.getChatRoomId());

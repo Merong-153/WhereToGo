@@ -160,14 +160,14 @@ export function ChatListPage() {
             >
               닫기
             </Button>
-            <Box h="calc(100% - 60px)">
+            <Box h="calc(100% - 70px)">
               <ChatWebSocket
                 roomInfo={{
                   chatRoomId: selectedChat.chatRoomId,
                   memberId: selectedChat.memberId,
                   memberNickName: selectedChat.memberNickName,
                 }}
-                maxHeight="370px"
+                maxHeight="100%"
                 width="100%"
               />
             </Box>
